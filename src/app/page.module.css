@@ -1,0 +1,78 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url("/images/tittle.jpeg") no-repeat center center;
+    background-size: cover;
+    text-align: center;
+}
+
+/* ===== メインタイトル（バブル風） ===== */
+.mainTitle {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #fff;
+    padding: 0.4em 0.8em;
+    border-radius: 1em;
+    background: linear-gradient(145deg, #ff80bf, #809fff);
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.2),
+        inset 0 -6px 10px rgba(0, 0, 0, 0.25),
+        inset 0 6px 10px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    animation: bubbleFloat 3s ease-in-out infinite;
+}
+
+/* ===== サブタイトル（小さいバブル風） ===== */
+.subTitle {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 1rem;
+    padding: 0.3em 0.8em;
+    border-radius: 1em;
+    background: linear-gradient(145deg, #ffdd80, #ff80bf);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.15),
+        inset 0 -4px 6px rgba(0, 0, 0, 0.2),
+        inset 0 4px 6px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    animation: bubbleFloat 4s ease-in-out infinite;
+}
+
+/* ===== スタートボタン ===== */
+.startBtn {
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    border-radius: 50px;
+    background: linear-gradient(145deg, #80e0ff, #4dd0e1);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 0 #0099cc;
+}
+
+.startBtn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 0 #0099cc;
+    background: linear-gradient(145deg, #4dd0e1, #80e0ff);
+}
+
+/* ===== バブルのふわふわアニメ ===== */
+@keyframes bubbleFloat {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.05);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}

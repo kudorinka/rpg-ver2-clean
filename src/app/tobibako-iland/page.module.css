@@ -1,0 +1,371 @@
+/* ===== 背景（画像固定） ===== */
+.page {
+    /* 画面以上に伸びたらスクロールできるようにする */
+    min-height: 100svh;
+    /* or 100dvh でもOK。iOS対策なら svh 推し */
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+    /* 横スクロールだけ抑制 */
+    overflow-y: auto;
+    /* 縦スクロールを許可 */
+    color: var(--ink);
+    padding-bottom: 24px;
+    /* 末尾が切れないように少し余白 */
+}
+
+.bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: url('/images/tobiiland.jpeg') center/cover no-repeat fixed;
+}
+
+/* ふわふわ飾り */
+.bubbles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bubbles span {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    filter: blur(18px) saturate(120%);
+    opacity: .55;
+    animation: float 16s ease-in-out infinite;
+}
+
+.bubbles span:nth-child(1) {
+    left: -60px;
+    top: -60px;
+    background: linear-gradient(135deg, #ffd6e0, #ffc078);
+}
+
+.bubbles span:nth-child(2) {
+    right: -80px;
+    top: 10vh;
+    background: linear-gradient(135deg, #b2f2bb, #96f);
+    animation-duration: 18s;
+    animation-delay: -3s;
+}
+
+.bubbles span:nth-child(3) {
+    left: 10vw;
+    bottom: -100px;
+    background: linear-gradient(135deg, #99e9f2, #fcc419);
+    animation-duration: 20s;
+    animation-delay: -6s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-18px) translateX(8px) scale(1.04);
+    }
+
+    100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+}
+
+/* ===== カード ===== */
+.card {
+    position: relative;
+    width: min(1100px, 94vw);
+    margin: 40px auto 24px;
+    padding: 18px;
+    border-radius: 22px;
+    background: var(--card);
+    border: 1px solid var(--edge);
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 14px;
+}
+
+/* ヘッダー */
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 12px;
+    margin-bottom: 2px;
+}
+
+.title {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: .02em;
+    background: linear-gradient(90deg, var(--c4), var(--c6));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: var(--ink-dim);
+}
+
+.headerActions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.navBtn {
+    appearance: none;
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-weight: 900;
+    font-size: 12px;
+    cursor: pointer;
+    color: #1e293b;
+    border: 2px solid #a5b4fc;
+    background: linear-gradient(180deg, #e0e7ff, #c7d2fe);
+    box-shadow: 0 6px 0 #a5b4fc;
+    transform: translateY(0);
+    transition: .15s;
+}
+
+.navBtn:hover {
+    transform: translateY(-2px);
+}
+
+.navBtn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #a5b4fc;
+}
+
+/* ===== ステージカード（単一） ===== */
+.stageCard {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 2px solid #ffe4ef;
+    background: linear-gradient(180deg, #fff, #fff7fb);
+    box-shadow: 0 10px 0 #ffd3e6, 0 22px 44px rgba(0, 0, 0, .12);
+    min-height: 320px;
+}
+
+.stageBg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: .16;
+    filter: saturate(120%);
+    z-index: 0;
+}
+
+.stageHead {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 14px;
+    border-bottom: 1px dashed #fecdd3;
+    background: linear-gradient(90deg, rgba(255, 240, 245, .8), rgba(255, 255, 255, .8));
+}
+
+.stageTitles {}
+
+.stageTitle {
+    margin: 0 0 2px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.stageMeta {
+    margin: 0;
+    font-size: 12px;
+    color: var(--ink-dim);
+}
+
+.stageTools {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.progressBar {
+    --h: 8px;
+    width: 200px;
+    height: var(--h);
+    border-radius: var(--h);
+    background: #fde2e4;
+    border: 1px solid #fecdd3;
+    overflow: hidden;
+}
+
+.progressFill {
+    display: block;
+    height: 100%;
+    border-radius: var(--h);
+    background: linear-gradient(90deg, #fb7185, #f472b6);
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.25) inset;
+}
+
+/* ===== 技リスト ===== */
+.techList {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 14px;
+    list-style: none;
+    display: grid;
+    grid-auto-rows: minmax(64px, auto);
+    gap: 12px;
+    overflow: auto;
+}
+
+.techItem {
+    width: 100%;
+    min-height: 64px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+    border-radius: 14px;
+    padding: 12px 14px;
+    background: #fff;
+    border: 2px solid #ffe3ec;
+    color: var(--ink);
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 8px 0 #ffe3ec;
+}
+
+.techItem:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 0 #ffe3ec;
+}
+
+.cleared {
+    border-color: #c7f9cc;
+    background: linear-gradient(180deg, #ecfff4, #eafffb);
+    box-shadow: 0 8px 0 #c7f9cc;
+}
+
+.techMain {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.techIcon {
+    font-size: 20px;
+}
+
+.techTitle {
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: .02em;
+}
+
+.techRight {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.status {
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .06em;
+    border: 2px solid #ffd6a5;
+}
+
+.stOpen {
+    background: #fffaf0;
+}
+
+.stNew {
+    background: linear-gradient(90deg, #22d3ee, #60a5fa);
+    color: #053049;
+    border-color: #bae6fd;
+}
+
+.stCleared {
+    background: linear-gradient(90deg, #34d399, #22c55e);
+    color: #052e1b;
+    border-color: #86efac;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.detailBtn {
+    appearance: none;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-weight: 900;
+    font-size: 12px;
+    cursor: pointer;
+    color: #1e293b;
+    border: 2px solid #a5b4fc;
+    background: linear-gradient(180deg, #e0e7ff, #c7d2fe);
+    box-shadow: 0 6px 0 #a5b4fc;
+    transform: translateY(0);
+    transition: .15s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.detailBtn:hover {
+    transform: translateY(-2px);
+}
+
+.detailBtn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #a5b4fc;
+}
+
+/* 新規出現アニメ */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translateY(6px) scale(0.98);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(-2px) scale(1.01);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.appear {
+    animation: popIn .35s ease-out both;
+}
+
+/* レスポンシブ */
+@media (max-width: 980px) {
+    .progressBar {
+        width: 140px;
+    }
+
+    .card {
+        width: min(96vw, 820px);
+    }
+}

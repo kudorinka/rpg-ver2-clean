@@ -1,0 +1,224 @@
+/* ===== 背景 ===== */
+.page {
+    min-height: 100vh;
+    width: 100%;
+    background:
+        url('/images/characterselect.jpeg') center/cover no-repeat fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+/* ===== メインカード領域 ===== */
+.card {
+    width: 100%;
+    max-width: 850px;
+    /* 980px → 700px */
+    padding: 8px;
+    /* 2px → 8px */
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.65);
+    color: #fff;
+    text-align: center;
+}
+
+.title {
+    font-size: 25px;
+    letter-spacing: 0.04em;
+}
+
+.subtitle {
+    margin: 4px;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* ===== 名前入力 ===== */
+.nameInput {
+    width: 100%;
+    max-width: 420px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: 2px solid hsl(60, 100%, 50%);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    outline: none;
+    transition: border-color .25s, box-shadow .25s;
+    margin-bottom: 14px;
+}
+
+.nameInput:focus {
+    border-color: hsl(60, 100%, 50%);
+    box-shadow: 0 0 10px hsl(60, 100%, 50%);
+}
+
+/* ===== キャラクターグリッド ===== */
+/* PCは常に5列固定。要素が10個なら自動で2行目に折り返されます。 */
+.grid {
+    margin-top: 8px;
+    /* 18px → 8px */
+    display: grid;
+    grid-template-columns: repeat(5, minmax(140px, 1fr));
+    /* ★5列固定 */
+    gap: 8px;
+    /* 16px → 8px */
+    justify-items: center;
+}
+
+/* ===== キャラクター選択パネル ===== */
+/* 中でグリッド2行（上＝画像領域 1fr、下＝ラベル auto）にして
+   画像の「最大高さ」をカード高からラベル分差し引いた値に制御します */
+.charItem {
+    width: 100%;
+    max-width: 130px;
+    /* 160px → 100px */
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.75));
+    display: grid;
+    grid-template-rows: 1fr auto;
+    /* 上：画像／下：ラベル */
+    align-items: end;
+    /* 画像の足元を下に寄せる */
+    position: relative;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .25s, border-color .25s, background .25s;
+}
+
+.charItem:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 0 20px;
+    border-color: hsl(60, 100%, 50%);
+}
+
+/* 全身キャラの画像（見切れ防止用に厳密制御） */
+.charImg {
+    align-self: end;
+    /* 足元を下へ */
+    justify-self: center;
+    width: 80%;
+    /* 90% → 80% */
+    height: auto;
+    /* アスペクト比維持 */
+    max-height: calc(100% - 28px);
+    /* ★ラベル約40pxぶんを差し引く */
+    object-fit: contain;
+    /* 収まらない時は縮小 */
+    object-position: bottom center;
+    /* 足元基準で表示 */
+    pointer-events: none;
+    user-select: none;
+    transition: transform .3s;
+    /* 以前の margin-top は削除（見切れの原因だったため） */
+}
+
+.charItem:hover .charImg {
+    transform: translateY(-6px) scale(1.05);
+}
+
+/* キャラ名ラベル（高さをほぼ固定にして上の max-height 計算と整合） */
+.charLabel {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    text-align: center;
+    padding: 4px 0;
+    /* 8px → 4px */
+    font-size: 12px;
+    /* 14px → 12px */
+    font-weight: 600;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    line-height: 1;
+    min-height: 28px;
+    /* 40px → 28px */
+    /* ★上の max-height とペア */
+    display: grid;
+    place-items: center;
+}
+
+/* ===== 選択中の演出 ===== */
+.selected {
+    border-color: hsl(60, 100%, 50%);
+    box-shadow: 0 0 25px hsl(60, 100%, 50%);
+}
+
+.selected .charImg {
+    animation: selectPop 0.6s ease-out;
+}
+
+@keyframes selectPop {
+    0% {
+        transform: scale(0.9);
+    }
+
+    60% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ===== ボタン行 ===== */
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.startBtn,
+.resetBtn {
+    appearance: none;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .1s, box-shadow .2s, background .2s;
+    font-size: 15px;
+}
+
+.startBtn {
+    background: linear-gradient(90deg, hsl(60, 100%, 50%));
+    color: #001a2e;
+    box-shadow: 0 6px 16px rgba(0, 242, 254, 0.45);
+}
+
+.startBtn:hover {
+    transform: translateY(-2px);
+}
+
+.resetBtn {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.resetBtn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== レスポンシブ ===== */
+/* タブレットでは4列、スマホ中では3列、小さめでは2列に落とす */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(4, minmax(140px, 1fr));
+    }
+}
+
+@media (max-width: 720px) {
+    .grid {
+        grid-template-columns: repeat(3, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+    }
+}

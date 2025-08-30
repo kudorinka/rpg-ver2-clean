@@ -1,0 +1,34 @@
+/* Global theme variables (NOT a CSS module) */
+:root {
+    --ink: #0b1020;
+    --ink-weak: #334155;
+    --ink-dim: #475569;
+
+    --card: #ffffff;
+    --edge: #e2e8f0;
+    --glass: rgba(255, 255, 255, .55);
+    --shadow: 0 16px 40px rgba(20, 24, 60, .18);
+
+    /* candy colors */
+    --c1: #ff6b6b;
+    /* candy red */
+    --c2: #ffd166;
+    /* mango */
+    --c3: #06d6a0;
+    /* mint */
+    --c4: #5c7cfa;
+    /* blueberry */
+    --c5: #f06595;
+    /* strawberry */
+    --c6: #4dd0e1;
+    /* soda */
+
+    --ok: #22c55e;
+}
+
+/* お好みのベースリセット（任意） */
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
