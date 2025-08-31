@@ -346,7 +346,7 @@ export default function TechniquePage({ params }: { params: Promise<{ id: string
                         <h1 className={styles.title}>{tech.title}</h1>
                         <p className={styles.subtitle}>
                             {playerName ? `${playerName} の挑戦` : "挑戦"}
-                            {selectedChar ? `（${selectedChar}）` : ""} ／ レベル：{level}
+                            ／ レベル：{level}
                         </p>
                     </div>
                     <div className={styles.actions}>
