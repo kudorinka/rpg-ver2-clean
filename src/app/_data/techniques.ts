@@ -24,7 +24,7 @@ export const TECHNIQUES: Technique[] = [
         title: "前転",
         stage: "netspring",
         order: 1,
-        video: "/https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/maeten.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/maeten.mp4",
         checkpoints: [
             "こしを高くしてスタートできている",
             "頭の後ろ→背中→おしりの順番でマットについている",
