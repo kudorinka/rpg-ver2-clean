@@ -24,7 +24,7 @@ export const TECHNIQUES: Technique[] = [
         title: "前転",
         stage: "netspring",
         order: 1,
-        video: "/videos/maeten.mp4",
+        video: "/https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/maeten.mp4",
         checkpoints: [
             "こしを高くしてスタートできている",
             "頭の後ろ→背中→おしりの順番でマットについている",
@@ -36,7 +36,7 @@ export const TECHNIQUES: Technique[] = [
         title: "大きな前転",
         stage: "netspring",
         order: 2,
-        video: "/videos/ookinazenten.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/ookinazenten.mp4",
         checkpoints: [
             "ひざを曲げて強くふみ切れている",
             "頭よりこしが高い位置にある",
@@ -49,7 +49,7 @@ export const TECHNIQUES: Technique[] = [
         title: "前転ブリッジ",
         stage: "netspring",
         order: 3,
-        video: "/videos/zentenburige.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/zentenburige.mp4",
         checkpoints: [
             "大きな前転をしている",
             "背中がついたらいっきに背中をそらしている",
@@ -61,7 +61,7 @@ export const TECHNIQUES: Technique[] = [
         title: "ステージからの前転ブリッジ",
         stage: "netspring",
         order: 4,
-        video: "/videos/stagekaranozentenburizzi.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/stagekaranozentenburizzi.mp4",
         checkpoints: [
             "大きな前転をしている",
             "背中がついたらいっきに背中をそらしている",
@@ -77,7 +77,7 @@ export const TECHNIQUES: Technique[] = [
         title: "三点倒立",
         stage: "headspring",
         order: 1,
-        video: "/videos/santentouritu.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/santentouritu.mp4",
         checkpoints: [
             "頭と両手で三角形をつくるようにしてマットに着けている",
             "マットからゆっくり足をはなし、こしを上げている",
@@ -90,7 +90,7 @@ export const TECHNIQUES: Technique[] = [
         title: "三点倒立ブリッジ",
         stage: "headspring",
         order: 2,
-        video: "/videos/santentourituburizzi.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/santentourituburizzi.mp4",
         checkpoints: [
             "頭と両手で三角形をつくるようにしてマットに着けている",
             "マットからゆっくり足をはなし、こしを上げている",
@@ -104,7 +104,7 @@ export const TECHNIQUES: Technique[] = [
         title: "ステージからの三点倒立ブリッジ",
         stage: "headspring",
         order: 3,
-        video: "/videos/stagekaranosantentouritsuburizzi.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/stagekaranosantentouritsuburizzi.mp4",
         checkpoints: [
             "頭と両手で三角形をつくるようにしてマットに着けている",
             "マットからゆっくり足をはなし、こしを上げている",
@@ -122,7 +122,7 @@ export const TECHNIQUES: Technique[] = [
         title: "台上前転",
         stage: "vault",
         order: 1,
-        video: "/videos/daizyozenten.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/daizyozenten.mp4",
         checkpoints: [
             "両足をそろえて強くふみきっている",
             "とび箱の手前に手をつき、ひざをのばしてこしを高く上げている",
@@ -135,7 +135,7 @@ export const TECHNIQUES: Technique[] = [
         title: "大きな台上前転",
         stage: "vault",
         order: 2,
-        video: "/videos/ookinadaizyouzenten.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/ookinadaizyouzenten.mp4",
         checkpoints: [
             "両足をそろえて強くふみきっている",
             "とび箱の手前に手をつき、ひざをのばしてこしを高く上げている",
@@ -148,7 +148,7 @@ export const TECHNIQUES: Technique[] = [
         title: "首はねとび",
         stage: "vault",
         order: 3,
-        video: "/videos/kubihanetobi.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/kubihanetobi.mp4",
         checkpoints: [
             "両足をそろえて強くふみきっている",
             "とび箱の中央に手をつき、ひざをのばしている",
@@ -162,7 +162,7 @@ export const TECHNIQUES: Technique[] = [
         title: "頭はねとび",
         stage: "vault",
         order: 4,
-        video: "/videos/atamahanetobi.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/atamahanetobi.mp4",
         checkpoints: [
             "両足をそろえて強くふみきっている",
             "とび箱の中央にうでで支えながら頭の前のあたりをつけて、ひざをのばしている",
