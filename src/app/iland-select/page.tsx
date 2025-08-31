@@ -66,7 +66,7 @@ export default function SelectTechniqueTop() {
           className={styles.video}
           aria-hidden="true"
         >
-          <source src="/videos/cloud.mp4" type="video/mp4" />
+          <source src="https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/cloud.mp4" type="video/mp4" />
         </video>
         <div className={styles.bgShade} aria-hidden="true" />
       </div>
