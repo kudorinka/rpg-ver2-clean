@@ -77,7 +77,7 @@ export const TECHNIQUES: Technique[] = [
         title: "三点倒立",
         stage: "headspring",
         order: 1,
-        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/santentouritu.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/santentoritsu.mp4",
         checkpoints: [
             "頭と両手で三角形をつくるようにしてマットに着けている",
             "マットからゆっくり足をはなし、こしを上げている",
@@ -148,7 +148,7 @@ export const TECHNIQUES: Technique[] = [
         title: "首はねとび",
         stage: "vault",
         order: 3,
-        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/kubihanetobi.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/kubihane.mp4",
         checkpoints: [
             "両足をそろえて強くふみきっている",
             "とび箱の中央に手をつき、ひざをのばしている",
