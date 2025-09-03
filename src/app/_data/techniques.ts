@@ -61,7 +61,7 @@ export const TECHNIQUES: Technique[] = [
         title: "ステージからの前転ブリッジ",
         stage: "netspring",
         order: 4,
-        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/stagekaranozentenburizzi.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/sutezikaranokubihaneburizzi.MOV",
         checkpoints: [
             "大きな前転をしている",
             "背中がついたらいっきに背中をそらしている",
@@ -90,7 +90,7 @@ export const TECHNIQUES: Technique[] = [
         title: "三点倒立ブリッジ",
         stage: "headspring",
         order: 2,
-        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/santentourituburizzi.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/sanntenntourituburizzi.MOV",
         checkpoints: [
             "頭と両手で三角形をつくるようにしてマットに着けている",
             "マットからゆっくり足をはなし、こしを上げている",
@@ -104,7 +104,7 @@ export const TECHNIQUES: Technique[] = [
         title: "ステージからの三点倒立ブリッジ",
         stage: "headspring",
         order: 3,
-        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/stagekaranosantentouritsuburizzi.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/sutezikaranoatamahaneburzzi.MOV",
         checkpoints: [
             "頭と両手で三角形をつくるようにしてマットに着けている",
             "マットからゆっくり足をはなし、こしを上げている",
