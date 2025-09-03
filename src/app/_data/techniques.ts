@@ -49,7 +49,7 @@ export const TECHNIQUES: Technique[] = [
         title: "前転ブリッジ",
         stage: "netspring",
         order: 3,
-        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/zentenburige.mp4",
+        video: "https://rnzvo6xhryv0fkxz.public.blob.vercel-storage.com/zenntennburzzi.MOV",
         checkpoints: [
             "大きな前転をしている",
             "背中がついたらいっきに背中をそらしている",
