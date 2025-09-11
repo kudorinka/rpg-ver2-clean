@@ -9,7 +9,7 @@ type Character = {
     id: string;
     name: string;
     furigana: string;
-    img: string;            // HUD でも使う画像パス
+    img: string; // HUD でも使う画像パス
 };
 
 export default function CharacterSelectPage() {
@@ -18,6 +18,7 @@ export default function CharacterSelectPage() {
     const [playerName, setPlayerName] = useState<string>('');
     const [selectedCharId, setSelectedCharId] = useState<string | null>(null);
     const [selectedCharImg, setSelectedCharImg] = useState<string>(''); // ★ 画像パスも保持
+    const [isResetting, setIsResetting] = useState(false); // ★ 二重押し防止
 
     useEffect(() => {
         // 既存データの読み込み
@@ -29,6 +30,129 @@ export default function CharacterSelectPage() {
         if (savedChar) setSelectedCharId(savedChar);
         if (savedCharImg) setSelectedCharImg(savedCharImg);
     }, []);
+
+    // ▼▼▼ リセット関連（取りこぼし防止の強化版）▼▼▼
+
+    // 厳密一致で消すキー（古い互換用も含めておく）
+    const MAT_EXACT_KEYS = [
+        'matRpgPlayerName',
+        'matRpgSelectedChar',
+        'matRpgSelectedCharImg',
+        'matProgress',
+        'matClears',
+    ] as const;
+
+    // よく使うプレフィクス（プロフィール別など）
+    const MAT_PREFIX_KEYS = [
+        'matLevel_',
+        'matProgress_',
+        'matPets_',
+        'matQuest_',
+        'matExercise_',
+        'matSkill_',
+        'matBadge_',
+        'matClear_',
+        'matStage_',
+        'matInventory_',
+    ] as const;
+
+    // 名前空間で広くマッチ（大文字小文字無視）
+    const MAT_NAMESPACE_REGEX = /(matrpg|^mat)/i;
+
+    // Cache Storage も掃除（静的アセットの再取得を強制したい場合）
+    async function clearCacheStorageSafely() {
+        try {
+            if (typeof caches !== 'undefined' && caches.keys) {
+                const keys = await caches.keys();
+                await Promise.all(keys.map((k) => caches.delete(k)));
+            }
+        } catch {
+            // 失敗しても致命ではないので無視
+        }
+    }
+
+    // Service Worker のキャッシュも強制的に更新したい場合は、SW側実装に応じてメッセージ送信などを検討
+
+    // RPG関連のストレージを一括削除（localStorage / sessionStorage）
+    const resetAllRpgData = async () => {
+        // まず localStorage のキー一覧を固定配列に（削除で index がズレないように）
+        const localKeys: string[] = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const k = localStorage.key(i);
+            if (k) localKeys.push(k);
+        }
+
+        const removed: string[] = [];
+
+        for (const key of localKeys) {
+            const matchExact = (MAT_EXACT_KEYS as readonly string[]).includes(key);
+            const matchPrefix = MAT_PREFIX_KEYS.some((p) => key.startsWith(p));
+            const matchNamespace = MAT_NAMESPACE_REGEX.test(key); // 広域
+
+            if (matchExact || matchPrefix || matchNamespace) {
+                localStorage.removeItem(key);
+                removed.push(key);
+            }
+        }
+
+        // sessionStorage も同様に（使っている場合のみ）
+        try {
+            const sessionKeys: string[] = [];
+            for (let i = 0; i < sessionStorage.length; i++) {
+                const k = sessionStorage.key(i);
+                if (k) sessionKeys.push(k);
+            }
+            for (const key of sessionKeys) {
+                if (
+                    (MAT_EXACT_KEYS as readonly string[]).includes(key) ||
+                    MAT_PREFIX_KEYS.some((p) => key.startsWith(p)) ||
+                    MAT_NAMESPACE_REGEX.test(key)
+                ) {
+                    sessionStorage.removeItem(key);
+                    removed.push(`session:${key}`);
+                }
+            }
+        } catch {
+            // Safari等での制限時は無視
+        }
+
+        // Cache Storage も削除（任意）
+        await clearCacheStorageSafely();
+
+        // 何を消したか見える化（デバッグ用）
+        if (removed.length) {
+            // eslint-disable-next-line no-console
+            console.table(removed.map((k) => ({ removedKey: k })));
+        }
+        return removed.length;
+    };
+
+    const handleResetClick = async () => {
+        if (isResetting) return;
+        const ok = window.confirm(
+            'RPGデータをすべてリセットします（名前・キャラ・レベル・進捗・バッジ等）。この操作は取り消せません。実行しますか？'
+        );
+        if (!ok) return;
+
+        try {
+            setIsResetting(true);
+            const removed = await resetAllRpgData();
+
+            // UIの状態もクリア
+            setPlayerName('');
+            setSelectedCharId(null);
+            setSelectedCharImg('');
+
+            alert(`データをリセットしました（削除 ${removed} 件）。`);
+
+            // 強制リロードで完全初期化（メモリ上の状態や SW/Cache の揺れを排除）
+            location.reload();
+        } finally {
+            setIsResetting(false);
+        }
+    };
+
+    // ▲▲▲ リセット関連ここまで ▲▲▲
 
     // ★ 10キャラ（5×2で表示）
     const characters: Character[] = [
@@ -49,7 +173,7 @@ export default function CharacterSelectPage() {
         setSelectedCharId(charId);
         setSelectedCharImg(imgPath);
 
-        // プレビュー用に即保存しておく（任意）
+        // プレビュー用に即保存（任意）
         localStorage.setItem('matRpgSelectedChar', charId);
         localStorage.setItem('matRpgSelectedCharImg', imgPath);
     }
@@ -68,6 +192,7 @@ export default function CharacterSelectPage() {
 
         // プロフィールキー（名前×キャラ）でデータを分ける
         const profileKey = `${name || 'default'}__${selectedCharId || 'default'}`;
+
         // 初回ならレベル初期化
         if (!localStorage.getItem(`matLevel_${profileKey}`)) {
             localStorage.setItem(`matLevel_${profileKey}`, '1');
@@ -107,7 +232,7 @@ export default function CharacterSelectPage() {
                             <button
                                 type="button"
                                 key={char.id}
-                                onClick={() => chooseCharacter(char.id, char.img)}   // ★ 修正ポイント
+                                onClick={() => chooseCharacter(char.id, char.img)} // ★ 修正ポイント
                                 className={`${styles.charItem} ${selected ? styles.selected : ''}`}
                                 aria-pressed={selected}
                                 role="listitem"
@@ -129,6 +254,18 @@ export default function CharacterSelectPage() {
                 <div className={styles.actions}>
                     <button className={styles.startBtn} onClick={startAdventure}>
                         冒険を始める
+                    </button>
+
+                    {/* ★ 追加：一括リセットボタン（取りこぼし無しの完全版） */}
+                    <button
+                        type="button"
+                        className={styles.resetBtn}
+                        onClick={handleResetClick}
+                        disabled={isResetting}
+                        aria-busy={isResetting}
+                        title="RPG関連データ（名前／キャラ／レベル／進捗／バッジ／ペット等）とキャッシュを削除します"
+                    >
+                        {isResetting ? 'リセット中…' : 'データをリセット'}
                     </button>
                 </div>
             </div>
