@@ -332,7 +332,12 @@ export default function TechniquePage({ params }: { params: Promise<{ id: string
 
     return (
         <main className={styles.page}>
-            <HUD />
+            {/* HUD を中央＆同幅に */}
+            <div className={styles.hudRow}>
+                <div className={styles.hudInner}>
+                    <HUD />
+                </div>
+            </div>
             <div className={styles.bubbles}>
                 <span />
                 <span />
