@@ -538,7 +538,7 @@
 }
 
 /* レスポンシブ */
-@media (max-width: 980px) {
+@media (max-width: 970px) {
     .content {
         grid-template-columns: 1fr;
     }
